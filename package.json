@@ -1,0 +1,19 @@
+{
+  "name": "hillel",
+  "version": "1.0.0",
+  "description": "Hilles homework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wadym",
+  "license": "ISC",
+  "quokka": {
+      "plugins": ["jsdom-quokka-plugin"],
+      "jsdom": {
+          "file": "./index.html",
+          "html": "...",
+          "userAgent": "..."
+      }
+  }
+}

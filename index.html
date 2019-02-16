@@ -14,79 +14,25 @@
 		<header class="header">
 			<nav class="main-menu">
 				<ul>
-					<li class="main-menu__item"><a href="/">movies</a></li>
-					<li class="main-menu__item"><a href="#/schedule">schedule</a></li>
+					<li class="main-menu__item"><a href="#index">Now playing</a></li>
+					<li class="main-menu__item"><a href="#schedule">schedule</a></li>
 				</ul>
 				<div class="bottom__item">
-					<a class="main-menu__item" href="#/admin">admin panel</a>
+					<a class="main-menu__item" href="#admin">admin panel</a>
 				</div>
 			</nav>
 		</header>
 		<section class="main">
 			<div class="section-title">
-				<h1>movies</h1>
-				<span class="backdrop">movies</span>
+				<h1 id="page-title">Now playing</h1>
+				<span id="title-backdrop" class="backdrop">Now playing</span>
 			</div>
-			<div class="section-content movies-list">
-				<article class="movies-list__item">
-					<a href="_movie.html" style="background-image: url(./img/1.jpg)">
-						<div class="movie-title">
-							<h2>Detective Pikachu</h2>
-						</div>
-					</a>
-				</article>
-				<article class="movies-list__item">
-					<a href="#/movie-name" style="background-image: url(./img/2.jpg)">
-						<div class="movie-title">
-							<h2>Detective Pikachu</h2>
-						</div>
-					</a>
-				</article>
-				<article class="movies-list__item">
-					<a href="#/movie-name" style="background-image: url(./img/3.jpg)">
-						<div class="movie-title">
-							<h2>Detective Pikachu</h2>
-						</div>
-					</a>
-				</article>
-				<article class="movies-list__item">
-					<a href="#/movie-name" style="background-image: url(./img/4.jpg)">
-						<div class="movie-title">
-							<h2>Detective Pikachu</h2>
-						</div>
-					</a>
-				</article>
-				<article class="movies-list__item">
-					<a href="#/movie-name" style="background-image: url(./img/1.jpg)">
-						<div class="movie-title">
-							<h2>Detective Pikachu</h2>
-						</div>
-					</a>
-				</article>
-				<article class="movies-list__item">
-					<a href="#/movie-name" style="background-image: url(./img/2.jpg)">
-						<div class="movie-title">
-							<h2>Detective Pikachu</h2>
-						</div>
-					</a>
-				</article>
-				<article class="movies-list__item">
-					<a href="#/movie-name" style="background-image: url(./img/3.jpg)">
-						<div class="movie-title">
-							<h2>Detective Pikachu</h2>
-						</div>
-					</a>
-				</article>
-				<article class="movies-list__item">
-					<a href="#/movie-name" style="background-image: url(./img/4.jpg)">
-						<div class="movie-title">
-							<h2>Detective Pikachu</h2>
-						</div>
-					</a>
-				</article>
+			<div id="content" class="section-content">
+
 			</div>
+			<div id="movie-details-view"></div>
 		</section>
 	</section>
-	<script src="js/index.js"></script>
+	<script src="js/index.js" type="module"></script>
 </body>
 </html>

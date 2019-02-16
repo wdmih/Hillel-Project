@@ -32,9 +32,6 @@ module.exports = {
         "brace-style": ["error", "1tbs", {
             "allowSingleLine": true
         }],
-        "camelcase": ["error", {
-            "properties": "never"
-        }],
         "comma-dangle": ["error", {
             "arrays": "never",
             "objects": "never",
