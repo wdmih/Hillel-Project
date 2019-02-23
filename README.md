@@ -2,8 +2,8 @@
 
 **to start development**
 
-npm i
+*npm i*
 
 then
 
-npm run start
+*npm run start*
