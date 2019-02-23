@@ -195,7 +195,6 @@ module.exports = {
         }],
         "no-useless-call": "error",
         "no-useless-computed-key": "error",
-        "no-useless-constructor": "error",
         "no-useless-escape": "error",
         "no-useless-rename": "error",
         "no-useless-return": "error",

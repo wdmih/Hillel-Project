@@ -1,19 +1,17 @@
-import { View } from './view.js';
-import slugify from '../utils/slugify.js';
-import doPushState from '../utils/do-push-state.js';
 
-export class MovieDetailsView extends View {
-  constructor(movie, el) {
-    super(el);
-    this.movie = movie;
+import View from './View';
+
+export default class MovieDetailsView extends View {
+  constructor(options) {
+    super(options);
   }
 
   setMovie(movie) {
-    this.movie = movie;
+    this.model = movie;
     this.render();
   }
   render() {
-    const { id, title, poster_path, original_language, overview, release_date } = this.movie;
+    const { id, title, poster_path, original_language, overview, release_date } = this.model;
     this.clear();
     let movie = this.element;
     this.element.classList.remove('movies-list');
@@ -40,7 +38,6 @@ export class MovieDetailsView extends View {
                         </ul>
                         <button class="button" data-id="${id}">book now</button>
                       </div>`;
-    doPushState(title, slugify(title));
     return this;
   }
 }

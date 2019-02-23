@@ -1,19 +1,34 @@
 {
-  "name": "hillel",
+  "name": "hillel-project-cinema",
   "version": "1.0.0",
   "description": "Hilles homework",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --open",
+    "build": "webpack"
   },
   "author": "Wadym",
-  "license": "ISC",
+  "license": "MIT",
   "quokka": {
-      "plugins": ["jsdom-quokka-plugin"],
-      "jsdom": {
-          "file": "./index.html",
-          "html": "...",
-          "userAgent": "..."
-      }
+    "plugins": [
+      "jsdom-quokka-plugin"
+    ],
+    "jsdom": {
+      "file": "./index.html",
+      "html": "...",
+      "userAgent": "..."
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wdmih/Hillel-Project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wdmih/Hillel-Project/issues"
+  },
+  "homepage": "https://github.com/wdmih/Hillel-Project#readme",
+  "devDependencies": {
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.0"
   }
 }

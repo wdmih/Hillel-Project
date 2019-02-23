@@ -1,11 +1,30 @@
-import store from './data/data.js';
-import { Movies } from './models/movies.js';
-import { MoviesListView } from './views/movie-list-view.js';
+import router from './router/Router';
+import routeHandlers from './router/route-handlers';
 
-store.getMovies().then(result => {
-  let movies = new Movies(result);
-  let element = document.getElementById('content');
-  element.classList.add('movies-list');
-  let movieView = new MoviesListView(movies, element);
-  movieView.render();
+router.add('/', routeHandlers.indexPage);
+router.add('/:slug', routeHandlers.detailPage);
+router.add('/schedule', routeHandlers.schedule);
+router.add('/admin-panel', routeHandlers.adminPanel);
+
+router.init();
+
+window.addEventListener('load', function(e) {
+  router.nav(window.location.pathname);
+});
+
+history.replaceState({}, null, window.location.pathname);
+
+// Перехват ссылок
+let navitems = document.getElementById('main-menu');
+navitems.addEventListener('click', function(e) {
+  e.preventDefault();
+  let target = e.target;
+  if (target.tagName === 'A') {
+    router.nav(target.attributes['href'].value);
+    // history.pushState({ pageTitle: target.innerText }, null, target.attributes['href'].value);
+  }
+});
+
+window.addEventListener('popstate', function(e) {
+  router.nav(window.location.pathname);
 });
