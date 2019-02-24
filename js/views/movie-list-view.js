@@ -23,8 +23,11 @@ export default class MoviesListView extends View {
     this.element.addEventListener('click', (e) => {
       e.preventDefault();
       let target = e.target;
-      if (target.tagName === 'A') {
-        router.nav(target.attributes['href'].value);
+      while (target !== this.element) {
+        if (target.tagName === 'A') {
+          router.nav(target.attributes['href'].value);
+        }
+        target = target.parentNode;
       }
     });
   }

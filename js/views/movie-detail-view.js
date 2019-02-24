@@ -11,7 +11,7 @@ export default class MovieDetailsView extends View {
     this.render();
   }
   render() {
-    const { id, title, poster_path, original_language, overview, release_date } = this.model;
+    const { title, poster_path, original_language, overview, release_date } = this.model;
     this.clear();
     let movie = this.element;
     this.element.classList.remove('movies-list');
@@ -36,7 +36,17 @@ export default class MovieDetailsView extends View {
                             <span class="info-title-value">${overview}</span>
                           </li>
                         </ul>
-                        <button class="button" data-id="${id}">book now</button>
+                        <div class="movie-sessions-time">
+                          <p>Sessions today:</p>
+                          <ul>
+                            <li class="session-time-tag"><a href="#">07:30</a></li>
+                            <li class="session-time-tag"><a href="#">11:20</a></li>
+                            <li class="session-time-tag"><a href="#">13:40</a></li>
+                            <li class="session-time-tag"><a href="#">15:30</a></li>
+                            <li class="session-time-tag"><a href="#">17:45</a></li>
+                            <li class="session-time-tag"><a href="#">22:10</a></li>
+                          </ul>
+                        </div>
                       </div>`;
     return this;
   }
