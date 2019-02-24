@@ -32,11 +32,8 @@ export default class MoviesListView extends View {
     });
   }
   render() {
-    if (this.element.classList.contains('movie-page')) {
-      this.element.classList.remove('movie-page');
-    }
-    this.element.classList.add('movies-list');
     this.clear();
+    this.element.classList.add('movies-list');
     this.movieViews.forEach(view => {
       this.element.appendChild(view.render().element);
     });

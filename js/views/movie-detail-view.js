@@ -13,10 +13,8 @@ export default class MovieDetailsView extends View {
   render() {
     const { title, poster_path, original_language, overview, release_date } = this.model;
     this.clear();
-    let movie = this.element;
-    this.element.classList.remove('movies-list');
     this.element.classList.add('movie-page');
-    movie.innerHTML = `<div class="movie-img-wrapper">
+    this.element.innerHTML = `<div class="movie-img-wrapper">
                         <figure>
                           <img src="${poster_path}" alt="${title}">
                         </figure>

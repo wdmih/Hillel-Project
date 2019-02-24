@@ -11,6 +11,7 @@ export default class View {
   }
   clear() {
     this.element.innerHTML = '';
+    this.element.className = '';
     return this;
   }
 }
