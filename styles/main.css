@@ -317,6 +317,7 @@ a {
 .schedule-page {
   position: relative;
   margin-right: 246px;
+  padding-bottom: 30px;
 }
 
 .session-list__item:not(:last-child) {

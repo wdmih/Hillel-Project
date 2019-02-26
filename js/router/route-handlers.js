@@ -12,7 +12,10 @@ let movieView = new MoviesListView({
   el: routeRootEl
 });
 
-let scheduleView = new ScheduleListView({ model: movies, el: routeRootEl });
+let scheduleView = new ScheduleListView({
+  model: movies,
+  el: routeRootEl
+});
 
 export default {
   indexPage: function() {
@@ -27,8 +30,7 @@ export default {
     setPageTitle(history.state.pageTitle);
   },
   schedule: function() {
-    routeRootEl.innerHTML = 'FUCK';
-    // scheduleView.render();
+    scheduleView.render();
     history.pushState({ pageTitle: 'Schedule' }, null, '/schedule');
     setPageTitle(history.state.pageTitle);
   },

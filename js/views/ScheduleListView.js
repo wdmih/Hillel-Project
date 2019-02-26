@@ -11,13 +11,14 @@ export default class ScheduleListView extends View {
       sessionsList.getSessionMoviesId().forEach(item => {
         this.moviesWithSessions.push(this.model.getMovieById(item));
       });
-    });
-    this.moviesWithSessions.forEach(item => {
-      this.moviesWithSessionsView.push(new MovieSessionView({
-        model: item,
-        tagName: 'article',
-        className: 'session-list__item'
-      }));
+
+      this.moviesWithSessions.forEach(item => {
+        this.moviesWithSessionsView.push(new MovieSessionView({
+          model: item,
+          tagName: 'article',
+          className: 'session-list__item'
+        }));
+      });
     });
   }
   render() {

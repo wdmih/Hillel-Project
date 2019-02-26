@@ -5,10 +5,10 @@ export default class MovieSessionView extends View {
     super(options);
   }
   render() {
-    this.element.innerHtml = `<div class="movie-session">
-                                <figure class="movie-session__img" style="background-image: url('./img/Lego-2-poster-Emmet.jpg')"></figure>
+    this.element.innerHTML = `<div class="movie-session">
+                                <figure class="movie-session__img" style="background-image: url(${this.model.poster_path})"></figure>
                                 <div class="movie-session__info">
-                                  <h3>Polar</h3>
+                                  <h3>${this.model.title}</h3>
                                   <span>25.03.2019</span>
                                   <div class="movie-sessions-time">
                                     <p>Sessions:</p>
@@ -23,5 +23,6 @@ export default class MovieSessionView extends View {
                                   </div>
                                 </div>
                               </div>`;
+    return this;
   }
 }

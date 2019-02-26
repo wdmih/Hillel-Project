@@ -12,8 +12,6 @@ window.addEventListener('load', function(e) {
   router.nav(window.location.pathname);
 });
 
-history.replaceState({}, null, window.location.pathname);
-
 // Перехват ссылок
 let navitems = document.getElementById('main-menu');
 navitems.addEventListener('click', function(e) {
@@ -21,7 +19,6 @@ navitems.addEventListener('click', function(e) {
   let target = e.target;
   if (target.tagName === 'A') {
     router.nav(target.attributes['href'].value);
-    // history.pushState({ pageTitle: target.innerText }, null, target.attributes['href'].value);
   }
 });
 
