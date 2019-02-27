@@ -12,7 +12,7 @@ export default class ScheduleListView extends View {
         this.moviesWithSessions.push(this.model.getMovieById(item));
       });
 
-      this.moviesWithSessions.forEach(item => {
+      [...new Set(this.moviesWithSessions)].forEach(item => { // ...new Set() fiflter our moviesWithSessions array removes duplicates
         this.moviesWithSessionsView.push(new MovieSessionView({
           model: item,
           tagName: 'article',

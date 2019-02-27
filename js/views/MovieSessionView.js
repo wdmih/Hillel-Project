@@ -1,8 +1,10 @@
 import View from './View';
+import sessionsList from '../models/Sessions';
 
 export default class MovieSessionView extends View {
   constructor(options) {
     super(options);
+    this.movieSessions = sessionsList.getSessionsByParams(this.model.id, '2019-03-07T15:12:00', '2019-03-09T15:12:00');
   }
   render() {
     this.element.innerHTML = `<div class="movie-session">
@@ -13,12 +15,13 @@ export default class MovieSessionView extends View {
                                   <div class="movie-sessions-time">
                                     <p>Sessions:</p>
                                     <ul>
-                                      <li class="session-time-tag"><a href="#">07:30</a></li>
-                                      <li class="session-time-tag"><a href="#">07:30</a></li>
-                                      <li class="session-time-tag"><a href="#">07:30</a></li>
-                                      <li class="session-time-tag"><a href="#">07:30</a></li>
-                                      <li class="session-time-tag"><a href="#">07:30</a></li>
-                                      <li class="session-time-tag"><a href="#">07:30</a></li>
+                                      ${this.movieSessions.map(item => `
+                                        <li class="session-time-tag">
+                                          <a href="#${item.sessionId}">
+                                            ${item.sessionTime.getHours()}:${item.sessionTime.getMinutes()}
+                                          </a>
+                                        </li>
+                                      `.trim()).join('')}
                                     </ul>
                                   </div>
                                 </div>

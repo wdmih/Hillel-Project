@@ -354,7 +354,7 @@ a {
 
 .movie-session__info h3 {
   font-size: 1.5rem;
-  font-weight: 900;
+  font-weight: 700;
   margin-bottom: 15px;
 }
 
@@ -412,6 +412,7 @@ a {
 }
 
 .session-filter {
+  display: none;
   position: fixed;
   z-index: 2;
   right: 0;
@@ -419,6 +420,10 @@ a {
   width: 246px;
   height: 100%;
   padding-top: 140px;
+}
+
+.session-filter.active {
+  display: block;
 }
 
 .filters-block__title {
