@@ -326,7 +326,7 @@ a {
 
 .movie-session {
   background: rgba(232, 240, 255, 0.5);
-  height: 238px;
+  min-height: 238px;
   -webkit-border-radius: 10px;
           border-radius: 10px;
   overflow: hidden;
@@ -337,6 +337,7 @@ a {
 }
 
 .movie-session__img {
+  max-height: 238px;
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 160px;
       -ms-flex: 0 0 160px;
@@ -346,6 +347,10 @@ a {
   overflow: hidden;
   -webkit-background-size: cover;
           background-size: cover;
+}
+
+.movie-session__wrap {
+  margin-bottom: 10px;
 }
 
 .movie-session__info {
@@ -360,7 +365,7 @@ a {
 
 .movie-session__info span {
   display: block;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .movie-sessions-time p {
@@ -375,7 +380,7 @@ a {
   display: -ms-flexbox;
   display: flex;
   margin-left: -25px;
-  max-width: 360px;
+  /*max-width: 360px;*/
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;

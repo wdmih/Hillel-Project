@@ -1,6 +1,6 @@
 import View from './View';
 import sessionsList from '../models/Sessions';
-import MovieSessionView from './MovieSessionView';
+import ScheduleMovieView from './ScheduleMovieView';
 
 export default class ScheduleListView extends View {
   constructor(options) {
@@ -13,7 +13,7 @@ export default class ScheduleListView extends View {
       });
 
       [...new Set(this.moviesWithSessions)].forEach(item => { // ...new Set() fiflter our moviesWithSessions array removes duplicates
-        this.moviesWithSessionsView.push(new MovieSessionView({
+        this.moviesWithSessionsView.push(new ScheduleMovieView({
           model: item,
           tagName: 'article',
           className: 'session-list__item'
