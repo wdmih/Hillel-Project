@@ -4,24 +4,36 @@ import sessionsList from '../models/Sessions';
 export default class ScheduleMovieView extends View {
   constructor(options) {
     super(options);
-    this.movieSessions = sessionsList.getSessionsByParams(this.model.id, '2019-03-07T15:12:00', '2019-03-09T15:12:00');
-    console.log(this.movieSessions);
+
+    // Group sessions by date
+    const groups = sessionsList.getSessionsByParams(this.model.id, '2019-03-07T15:12:00', '2019-03-21T15:12:00').reduce((groups, item) => {
+      const date = String(item.sessionDate).split('T')[0];
+      if (!groups[date]) {
+        groups[date] = [];
+      }
+      groups[date].push(item);
+      return groups;
+    }, {});
+
+    this.sessionsGroups = Object.keys(groups).map((date) => {
+      return groups[date];
+    });
   }
   render() {
     this.element.innerHTML = `<div class="movie-session">
                                 <figure class="movie-session__img" style="background-image: url(${this.model.poster_path})"></figure>
                                 <div class="movie-session__info">
                                   <h3>${this.model.title}</h3>
-                                  ${this.movieSessions.map(item => `
+                                  ${this.sessionsGroups.map(group => `
                                     <div class="movie-session__wrap">
-                                      <span>${item.sessionDate.getDate()}.${item.sessionDate.getMonth() + 1}.${item.sessionDate.getFullYear()}</span>
-                                      <div class="movie-sessions-time" data-sessionId="${item.sessionId}">
+                                      <span>${group[0].sessionDate.getDate()}.${group[0].sessionDate.getMonth() + 1}.${group[0].sessionDate.getFullYear()}</span>
+                                      <div class="movie-sessions-time">
                                         <p>Sessions:</p>
                                         <ul>
-                                          ${item.sessionTime.map((item, i) => `
+                                          ${group.map(item => `
                                           <li class="session-time-tag">
-                                            <a href="/session/${i}">
-                                              ${item}
+                                            <a href="/schedule/${item.id}">
+                                              ${item.sessionDate.getHours()}:${item.sessionDate.getMinutes()}
                                             </a>
                                           </li>
                                           `.trim()).join('')}

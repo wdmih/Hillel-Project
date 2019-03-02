@@ -9,7 +9,7 @@ class Sessions {
     this.sessions.push(session);
   }
   getSessionMoviesId() {
-    return this.sessions.map(item => item.movieId);
+    return [...new Set(this.sessions.map(item => item.movieId))];
   }
   getSessionsByParams(movieId, dateFrom, dateTo) {
     let startDate = withoutTime(dateFrom).getTime();
@@ -24,11 +24,19 @@ class Sessions {
 
 let sessionsList = new Sessions();
 
-sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-07', sessionTime: ['11:00'] }));
-sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-07', sessionTime: ['09:30', '11:20', '14:50', '17:15', '22:00'] }));
-sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-08', sessionTime: ['11:00'] }));
-sessionsList.addSession(new Session({ movieId: 480530, sessionDate: '2019-03-07', sessionTime: ['11:00'] }));
+// SOME SESSIONS EXAMPLE
+sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-07T9:30' }));
+sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-07T11:30' }));
+sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-08T14:10' }));
 
-// sessionsList.getSessionsByParams(490132, '2019-03-07T15:12:00', '2019-03-09T15:12:00');
+sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-07T14:10' }));
+sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-08T12:10' }));
+sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-09T22:20' }));
+
+sessionsList.addSession(new Session({ movieId: 480530, sessionDate: '2019-03-08T11:20' }));
+sessionsList.addSession(new Session({ movieId: 480530, sessionDate: '2019-03-08T14:50' }));
+sessionsList.addSession(new Session({ movieId: 480530, sessionDate: '2019-03-21T17:35' }));
+
+// console.log(sessionsList.getSessionsByParams(480530, '2019-03-07T15:12:00', '2019-03-09T15:12:00'));
 
 export default sessionsList;

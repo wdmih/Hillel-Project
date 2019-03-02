@@ -4,6 +4,7 @@ import routeHandlers from './router/route-handlers';
 router.add('/', routeHandlers.indexPage);
 router.add('/:slug', routeHandlers.detailPage);
 router.add('/schedule', routeHandlers.schedule);
+router.add('/schedule/:sessionId', routeHandlers.sessionPage);
 router.add('/admin-panel', routeHandlers.adminPanel);
 
 router.init();

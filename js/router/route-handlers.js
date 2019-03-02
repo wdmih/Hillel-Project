@@ -38,6 +38,12 @@ export default {
     history.pushState({ pageTitle: 'Schedule' }, null, '/schedule');
     setPageTitle(history.state.pageTitle);
   },
+  sessionPage: function(sessionId) {
+    routeRootEl.innerHTML = `Session Page in Progress. Current Session ID = ${sessionId}`;
+    filterBlock.classList.remove('active');
+    history.pushState({ pageTitle: 'Session Page' }, null, '/schedule/' + sessionId);
+    setPageTitle(history.state.pageTitle);
+  },
   adminPanel: function() {
     routeRootEl.innerHTML = 'Admin panel in progress';
     filterBlock.classList.remove('active');
