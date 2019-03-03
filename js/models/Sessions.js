@@ -4,20 +4,49 @@ import withoutTime from '../utils/withoutTime';
 class Sessions {
   constructor() {
     this.sessions = [];
+    this.actualSessions = [];
   }
   addSession(session) {
     this.sessions.push(session);
   }
-  getSessionMoviesId() {
-    return [...new Set(this.sessions.map(item => item.movieId))];
+
+  getSessionMoviesId(dates) {
+    let startDate = withoutTime(dates.startDate).getTime();
+    let endDate = dates.endDate ? withoutTime(dates.endDate).getTime() : withoutTime(dates.startDate).getTime();
+
+    this.actualSessions = this.sessions.filter(item => {
+      let sessionDate = withoutTime(item.sessionDate).getTime();
+      return (startDate <= sessionDate && sessionDate <= endDate);
+    });
+
+    return [...new Set(this.actualSessions.map(item => item.movieId))];
   }
-  getSessionsByParams(movieId, dateFrom, dateTo) {
-    let startDate = withoutTime(dateFrom).getTime();
-    let endDate = dateTo ? withoutTime(dateTo).getTime() : withoutTime(dateFrom).getTime();
+
+  getSessionsbyParams(movieId, date) {
+    let currDate = withoutTime(date).getTime();
 
     return this.sessions.filter(item => {
       let sessionDate = withoutTime(item.sessionDate).getTime();
-      return (item.movieId === movieId && startDate <= sessionDate && sessionDate <= endDate);
+      return (item.movieId === movieId && currDate <= sessionDate && sessionDate <= currDate);
+    });
+  }
+
+  getSessionsGroups(movieId) {
+    let groups = this.actualSessions
+      .filter(item => {
+        return (item.movieId === movieId);
+      })
+      .reduce((groups, item) => {
+        const date = withoutTime(item.sessionDate).valueOf();
+        if (!groups[date]) {
+          groups[date] = [];
+        }
+        groups[date].push(item);
+        return groups;
+      }, {});
+
+    return Object.keys(groups).map((date) => {
+      return groups[date];
     });
   }
 }

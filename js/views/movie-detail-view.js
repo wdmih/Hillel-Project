@@ -1,5 +1,6 @@
-
 import View from './View';
+import sessionsList from '../models/Sessions';
+import moment from 'moment';
 
 export default class MovieDetailsView extends View {
   constructor(options) {
@@ -8,6 +9,8 @@ export default class MovieDetailsView extends View {
 
   setMovie(movie) {
     this.model = movie;
+    this.sessions = sessionsList.getSessionsbyParams(this.model.id, moment().format('YYYY-MM-DDTh:mm'));
+    console.log(this.sessions);
     this.render();
   }
   render() {
@@ -34,17 +37,20 @@ export default class MovieDetailsView extends View {
                             <span class="info-title-value">${overview}</span>
                           </li>
                         </ul>
-                        <div class="movie-sessions-time">
-                          <p>Sessions today:</p>
-                          <ul>
-                            <li class="session-time-tag"><a href="#">07:30</a></li>
-                            <li class="session-time-tag"><a href="#">11:20</a></li>
-                            <li class="session-time-tag"><a href="#">13:40</a></li>
-                            <li class="session-time-tag"><a href="#">15:30</a></li>
-                            <li class="session-time-tag"><a href="#">17:45</a></li>
-                            <li class="session-time-tag"><a href="#">22:10</a></li>
-                          </ul>
-                        </div>
+                        ${this.sessions.length > 0 ? `
+                          <div class="movie-sessions-time">
+                            <p>Sessions today:</p>
+                            <ul>
+                              ${this.sessions.map(item => `
+                                <li class="session-time-tag">
+                                  <a href="/schedule/${item.id}">
+                                    ${item.sessionDate.getHours()}:${item.sessionDate.getMinutes()}
+                                  </a>
+                                </li>
+                              `.trim()).join('')}
+                            </ul>
+                          </div>
+                        ` : ''}
                       </div>`;
     return this;
   }
