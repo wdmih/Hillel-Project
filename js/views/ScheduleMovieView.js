@@ -1,13 +1,14 @@
 import View from './View';
 import sessionsList from '../models/Sessions';
+import withoutTime from '../utils/withoutTime';
 
 export default class ScheduleMovieView extends View {
   constructor(options) {
     super(options);
 
     // Group sessions by date
-    const groups = sessionsList.getSessionsByParams(this.model.id, '2019-03-07T15:12:00', '2019-03-21T15:12:00').reduce((groups, item) => {
-      const date = String(item.sessionDate).split('T')[0];
+    const groups = sessionsList.getSessionsByParams(this.model.id, '2019-03-02T15:12:00', '2019-03-21T15:12:00').reduce((groups, item) => {
+      const date = withoutTime(item.sessionDate).valueOf();
       if (!groups[date]) {
         groups[date] = [];
       }
