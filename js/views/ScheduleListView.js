@@ -9,7 +9,7 @@ export default class ScheduleListView extends View {
   constructor(options) {
     super(options);
     this.filterDates = {
-      startDate: moment().format('YYYY-MM-DDTh:mm'),
+      startDate: moment().format('YYYY-MM-DDTHH:mm'),
       endDate: null
     };
 
@@ -60,20 +60,20 @@ export default class ScheduleListView extends View {
   filterDateHelper(target) {
     switch (target.value) {
       case 'today':
-        this.filterDates.startDate = moment().format('YYYY-MM-DDTh:mm');
+        this.filterDates.startDate = moment().format('YYYY-MM-DDTHH:mm');
         this.filterDates.endDate = null;
         break;
       case 'tomorrow':
-        this.filterDates.startDate = moment().add(1, 'days').format('YYYY-MM-DDTh:mm');
+        this.filterDates.startDate = moment().add(1, 'days').format('YYYY-MM-DDTHH:mm');
         this.filterDates.endDate = null;
         break;
       case 'week':
-        this.filterDates.startDate = moment().format('YYYY-MM-DDTh:mm');
-        this.filterDates.endDate = moment().endOf('isoweek').format('YYYY-MM-DDTh:mm');
+        this.filterDates.startDate = moment().format('YYYY-MM-DDTHH:mm');
+        this.filterDates.endDate = moment().endOf('isoweek').format('YYYY-MM-DDTHH:mm');
         break;
       case 'month':
-        this.filterDates.startDate = moment().format('YYYY-MM-DDTh:mm');
-        this.filterDates.endDate = moment().endOf('month').format('YYYY-MM-DDTh:mm');
+        this.filterDates.startDate = moment().format('YYYY-MM-DDTHH:mm');
+        this.filterDates.endDate = moment().endOf('month').format('YYYY-MM-DDTHH:mm');
         break;
       default:
         break;
