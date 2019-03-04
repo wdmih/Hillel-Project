@@ -9,7 +9,7 @@ export default class MovieDetailsView extends View {
 
   setMovie(movie) {
     this.model = movie;
-    this.sessions = sessionsList.getSessionsbyParams(this.model.id, moment().format('YYYY-MM-DDTh:mm'));
+    this.sessions = sessionsList.getSessionsbyParams(this.model.id, moment().format('YYYY-MM-DDTHH:mm'));
     console.log(this.sessions);
     this.render();
   }
