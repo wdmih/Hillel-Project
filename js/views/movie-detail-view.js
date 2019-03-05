@@ -50,7 +50,9 @@ export default class MovieDetailsView extends View {
                               `.trim()).join('')}
                             </ul>
                           </div>
-                        ` : ''}
+                        ` : `
+                            <div class="movie-info-no-sessions"><span>No sessions today</span></div>
+                        `}
                       </div>`;
     return this;
   }

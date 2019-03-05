@@ -83,9 +83,15 @@ export default class ScheduleListView extends View {
   render() {
     this.clear();
     this.element.classList.add('schedule-page');
-    this.moviesWithSessionsView.forEach(view => {
-      this.element.appendChild(view.render().element);
-    });
+    if (this.moviesWithSessionsView.length > 0) {
+      this.moviesWithSessionsView.forEach(view => {
+        this.element.appendChild(view.render().element);
+      });
+    } else {
+      this.element.innerHTML = `<div class="movie-info-no-sessions">
+                                  <p>There are no sessions for the selected date, please select a different date range</p>
+                                </div>`
+    }
     return this;
   }
 }
