@@ -1,6 +1,6 @@
 import View from './View';
 import sessionsList from '../models/Sessions';
-import ScheduleMovieView from './ScheduleMovieView';
+import ScheduleMovieView from './Schedule-movie-view';
 import moment from 'moment';
 
 const dateFilters = document.getElementById('date-filter');
@@ -90,7 +90,7 @@ export default class ScheduleListView extends View {
     } else {
       this.element.innerHTML = `<div class="movie-info-no-sessions">
                                   <p>There are no sessions for the selected date, please select a different date range</p>
-                                </div>`
+                                </div>`;
     }
     return this;
   }

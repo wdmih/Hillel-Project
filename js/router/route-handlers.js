@@ -1,7 +1,7 @@
 import movies from '../models/Movies';
 import MoviesListView from '../views/Movie-list-view';
 import MovieDetailsView from '../views/Movie-detail-view';
-import ScheduleListView from '../views/ScheduleListView';
+import ScheduleListView from '../views/Schedule-list-view';
 import slugify from '../utils/slugify';
 import setPageTitle from '../utils/set-page-title';
 
@@ -36,12 +36,6 @@ export default {
     scheduleView.render();
     filterBlock.classList.add('active');
     history.pushState({ pageTitle: 'Schedule' }, null, '/schedule');
-    setPageTitle(history.state.pageTitle);
-  },
-  sessionPage: function(sessionId) {
-    routeRootEl.innerHTML = `Session Page in Progress. Current Session ID = ${sessionId}`;
-    filterBlock.classList.remove('active');
-    history.pushState({ pageTitle: 'Session Page' }, null, '/schedule/' + sessionId);
     setPageTitle(history.state.pageTitle);
   },
   adminPanel: function() {

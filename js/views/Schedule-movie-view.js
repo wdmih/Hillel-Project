@@ -1,11 +1,26 @@
 import View from './View';
 import sessionsList from '../models/Sessions';
+import ModalView from './Modal-view';
+
+const modalContainer = document.getElementById('modal-cart');
 
 export default class ScheduleMovieView extends View {
   constructor(options) {
     super(options);
 
     this.sessionsGroups = sessionsList.getSessionsGroups(this.model.id);
+
+    this.element.addEventListener('click', (e) => {
+      e.preventDefault();
+      let target = e.target;
+      if (target.nodeName === 'A') {
+        let modalWindow = new ModalView({
+          model: sessionsList.getSessionById(target.dataset.sesid),
+          el: modalContainer
+        });
+        modalWindow.render();
+      }
+    });
   }
   render() {
     this.element.innerHTML = `<div class="movie-session">
@@ -20,7 +35,7 @@ export default class ScheduleMovieView extends View {
                                         <ul>
                                           ${group.map(item => `
                                           <li class="session-time-tag">
-                                            <a href="/schedule/${item.id}">
+                                            <a class="session-time-item" href="#" data-sesid="${item.id}">
                                               ${item.sessionDate.getHours()}:${item.sessionDate.getMinutes()}
                                             </a>
                                           </li>
