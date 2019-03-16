@@ -32,7 +32,10 @@ export default class CinemaHall {
       row.seats.forEach(seat => seat.reserved = false);
     });
   }
-  setPurchase(row, seat, status) {
-    this.schema[row].seats[seat].sold = status;
+  setPurchase(order) {
+    let listOrder = order.list;
+    listOrder.forEach(item => {
+      this.schema[item.row].seats[item.seat].sold = true;
+    });
   }
 }

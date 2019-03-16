@@ -59,16 +59,16 @@ class Sessions {
 let sessionsList = new Sessions();
 
 // SOME SESSIONS EXAMPLE
-sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-10T9:30', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
-sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-10T11:30', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
-sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-11T14:10', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
+sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-16T9:30', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
+sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-16T11:30', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
+sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-17T14:10', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
 
-sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-09T14:10', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
-sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-10T12:10', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
-sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-10T22:20', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
+sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-16T14:10', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
+sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-17T12:10', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
+sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-17T22:20', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
 
-sessionsList.addSession(new Session({ movieId: 480530, sessionDate: '2019-03-09T11:20', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
-sessionsList.addSession(new Session({ movieId: 480530, sessionDate: '2019-03-13T14:50', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
+sessionsList.addSession(new Session({ movieId: 480530, sessionDate: '2019-03-16T11:20', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
+sessionsList.addSession(new Session({ movieId: 480530, sessionDate: '2019-03-18T14:50', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
 sessionsList.addSession(new Session({ movieId: 480530, sessionDate: '2019-03-21T17:35', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
 
 // console.log(sessionsList.getSessionsByParams(480530, '2019-03-07T15:12:00', '2019-03-09T15:12:00'));

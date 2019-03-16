@@ -15,7 +15,7 @@ export default class ModalHallView extends View {
                                   ${this.model.hall.schema.map((row, i) => `
                                   <div class="seat-row" data-rowid=${i}>
                                     ${row.seats.map((seat, i) => `
-                                      <button class="seat ${seat.sold ? 'disabled' : '' || seat.reserved ? 'checked' : ''}" data-seatid="${i}"></button>
+                                      <button class="seat ${seat.sold ? 'disabled' : ''} ${seat.reserved ? 'checked' : ''}" data-seatid="${i}"></button>
                                     `.trim()).join('')}
                                   </div>
                                   `.trim()).join('')}

@@ -1,4 +1,5 @@
 import View from './View';
+import movies from '../models/Movies';
 import ModalMovieView from './Modal-movie-view';
 import ModalHallView from './Modal-hall-view';
 import OrderList from '../models/Order-list';
@@ -25,37 +26,44 @@ export default class ModalView extends View {
 
     this.element.addEventListener('click', (e) => {
       let target = e.target;
-      if (target.classList.contains('seat')) {
+      if (target.classList.contains('seat') && !target.classList.contains('disabled')) {
         let rowId = target.parentNode.dataset.rowid;
         let seatId = target.dataset.seatid;
 
-        if (target.classList.contains('checked')) {
-          this.model.hall.setReservation(rowId, seatId, false);
-          target.classList.remove('checked');
-        } else {
+        if (!target.classList.contains('checked')) {
           this.model.hall.setReservation(rowId, seatId, true);
           this.modalHallView.render();
           this.orderList.addToList({ row: rowId, seat: seatId });
           this.modalOrderView.render();
+        } else {
+          this.model.hall.setReservation(rowId, seatId, false);
+          this.modalHallView.render();
+          this.orderList.removeFromList({ row: rowId, seat: seatId });
+          this.modalOrderView.render();
         }
-      }
-    });
-
-    this.element.addEventListener('click', (e) => {
-      let target = e.target;
-      if (target.id === 'button-buy' && !target.classList.contains('button-disabled')) {
-        console.log(target);
+      } else if ((target.id === 'button-buy') && !(target.classList.contains('button-disabled'))) {
+        let order = {
+          movie: movies.getMovieById(this.model.movieId),
+          sessionId: this.model.id,
+          sessionTime: this.model.sessionDate,
+          orderList: this.orderList
+        };
+        console.log(JSON.stringify(order));
+        this.model.hall.setPurchase(this.orderList);
+        this.orderList.clear();
+        this.modalHallView.render();
+        this.modalOrderView.render();
       }
     });
 
     window.addEventListener('click', (e) => {
       if (e.target === this.element) {
-        this.clearAllonClose();
+        this.clearAllOnClose();
       }
     });
   }
 
-  clearAllonClose() {
+  clearAllOnClose() {
     this.model.hall.clearReservation();
     this.modalHallView.render();
     this.clear();
@@ -73,7 +81,7 @@ export default class ModalView extends View {
     let closeBtn = document.createElement('span');
     closeBtn.classList.add('close', 'close--modal');
     closeBtn.addEventListener('click', (e) => {
-      this.clearAllonClose();
+      this.clearAllOnClose();
     });
 
     let modalContentInner = document.createElement('div');

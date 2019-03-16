@@ -2,8 +2,6 @@ import View from './View';
 import sessionsList from '../models/Sessions';
 import ModalView from './Modal-view';
 
-const modalContainer = document.getElementById('modal-cart');
-
 export default class ScheduleMovieView extends View {
   constructor(options) {
     super(options);
@@ -16,7 +14,7 @@ export default class ScheduleMovieView extends View {
       if (target.nodeName === 'A') {
         let modalWindow = new ModalView({
           model: sessionsList.getSessionById(target.dataset.sesid),
-          el: modalContainer
+          el: document.getElementById('modal-cart')
         });
         modalWindow.render();
       }

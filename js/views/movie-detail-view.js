@@ -1,10 +1,23 @@
 import View from './View';
 import sessionsList from '../models/Sessions';
 import moment from 'moment';
+import ModalView from './Modal-view';
 
 export default class MovieDetailsView extends View {
   constructor(options) {
     super(options);
+
+    this.element.addEventListener('click', (e) => {
+      e.preventDefault();
+      let target = e.target;
+      if (target.nodeName === 'A') {
+        let modalWindow = new ModalView({
+          model: sessionsList.getSessionById(target.dataset.sesid),
+          el: document.getElementById('modal-cart')
+        });
+        modalWindow.render();
+      }
+    });
   }
 
   setMovie(movie) {
@@ -12,6 +25,7 @@ export default class MovieDetailsView extends View {
     this.sessions = sessionsList.getSessionsbyParams(this.model.id, moment().format('YYYY-MM-DDTHH:mm'));
     this.render();
   }
+
   render() {
     const { title, poster_path, original_language, overview, release_date } = this.model;
     this.clear();
@@ -42,7 +56,7 @@ export default class MovieDetailsView extends View {
                             <ul>
                               ${this.sessions.map(item => `
                                 <li class="session-time-tag">
-                                  <a href="/schedule/${item.id}">
+                                  <a href="#" data-sesid="${item.id}">
                                     ${item.sessionDate.getHours()}:${item.sessionDate.getMinutes()}
                                   </a>
                                 </li>

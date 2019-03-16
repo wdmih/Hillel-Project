@@ -12,7 +12,7 @@ module.exports = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     // new BundleAnalyzerPlugin()
   ],
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
   devServer: {
     contentBase: './',
     historyApiFallback: true
