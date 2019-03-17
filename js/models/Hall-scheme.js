@@ -1,4 +1,4 @@
-export default class CinemaHall {
+export default class HallScheme {
   constructor(options) {
     this.name = options.name;
     this.rows = options.rows;

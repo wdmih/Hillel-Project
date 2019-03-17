@@ -9,8 +9,8 @@ export default class ScheduleListView extends View {
   constructor(options) {
     super(options);
     this.filterDates = {
-      startDate: moment().format('YYYY-MM-DDTHH:mm'),
-      endDate: null
+      startDate: moment().startOf('day').format('YYYY-MM-DDTHH:mm'),
+      endDate: moment().endOf('day').format('YYYY-MM-DDTHH:mm')
     };
 
     this.model.getMovies().then(result => {
@@ -61,11 +61,11 @@ export default class ScheduleListView extends View {
     switch (target.value) {
       case 'today':
         this.filterDates.startDate = moment().format('YYYY-MM-DDTHH:mm');
-        this.filterDates.endDate = null;
+        this.filterDates.endDate = moment().endOf('day').format('YYYY-MM-DDTHH:mm');
         break;
       case 'tomorrow':
-        this.filterDates.startDate = moment().add(1, 'days').format('YYYY-MM-DDTHH:mm');
-        this.filterDates.endDate = null;
+        this.filterDates.startDate = moment().add(1, 'days').startOf('day').format('YYYY-MM-DDTHH:mm');
+        this.filterDates.endDate = moment().add(1, 'days').endOf('day').format('YYYY-MM-DDTHH:mm');
         break;
       case 'week':
         this.filterDates.startDate = moment().format('YYYY-MM-DDTHH:mm');

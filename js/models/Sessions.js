@@ -1,6 +1,8 @@
 import Session from './Session';
 import withoutTime from '../utils/without-time';
-import CinemaHall from './Cinema-hall';
+import hallList from './Hall-list';
+import HallScheme from './Hall-scheme';
+import moment from 'moment';
 
 class Sessions {
   constructor() {
@@ -16,11 +18,11 @@ class Sessions {
   }
 
   getSessionMoviesId(dates) {
-    let startDate = withoutTime(dates.startDate).getTime();
-    let endDate = dates.endDate ? withoutTime(dates.endDate).getTime() : withoutTime(dates.startDate).getTime();
+    let startDate = moment(dates.startDate).valueOf();
+    let endDate = dates.endDate ? moment(dates.endDate).valueOf() : moment(dates.startDate).valueOf();
 
     this.actualSessions = this.sessions.filter(item => {
-      let sessionDate = withoutTime(item.sessionDate).getTime();
+      let sessionDate = moment(item.sessionDate).valueOf();
       return (startDate <= sessionDate && sessionDate <= endDate);
     });
 
@@ -28,11 +30,12 @@ class Sessions {
   }
 
   getSessionsbyParams(movieId, date) {
-    let currDate = withoutTime(date).getTime();
+    let currDate = moment(date).valueOf();
+    let endOfCurrDate = moment(date).endOf('day').valueOf();
 
     return this.sessions.filter(item => {
-      let sessionDate = withoutTime(item.sessionDate).getTime();
-      return (item.movieId === movieId && currDate <= sessionDate && sessionDate <= currDate);
+      let sessionDate = moment(item.sessionDate).valueOf();
+      return (item.movieId === movieId && currDate <= sessionDate && sessionDate <= endOfCurrDate);
     });
   }
 
@@ -59,18 +62,16 @@ class Sessions {
 let sessionsList = new Sessions();
 
 // SOME SESSIONS EXAMPLE
-sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-16T9:30', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
-sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-16T11:30', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
-sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-17T14:10', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
+sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-17T9:30', hall: new HallScheme(hallList.getHallByName('cinetech')) }));
+sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-17T22:30', hall: new HallScheme(hallList.getHallByName('imax')) }));
+sessionsList.addSession(new Session({ movieId: 399579, sessionDate: '2019-03-18T14:10', hall: new HallScheme(hallList.getHallByName('cinetech')) }));
 
-sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-16T14:10', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
-sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-17T12:10', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
-sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-17T22:20', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
+sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-17T14:10', hall: new HallScheme(hallList.getHallByName('cinetech')) }));
+sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-18T12:10', hall: new HallScheme(hallList.getHallByName('imax')) }));
+sessionsList.addSession(new Session({ movieId: 490132, sessionDate: '2019-03-18T22:20', hall: new HallScheme(hallList.getHallByName('cinetech')) }));
 
-sessionsList.addSession(new Session({ movieId: 480530, sessionDate: '2019-03-16T11:20', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
-sessionsList.addSession(new Session({ movieId: 480530, sessionDate: '2019-03-18T14:50', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
-sessionsList.addSession(new Session({ movieId: 480530, sessionDate: '2019-03-21T17:35', hall: new CinemaHall({ name: 'Standart', rows: 4, seats: 8 }) }));
-
-// console.log(sessionsList.getSessionsByParams(480530, '2019-03-07T15:12:00', '2019-03-09T15:12:00'));
+sessionsList.addSession(new Session({ movieId: 480530, sessionDate: '2019-03-17T19:13', hall: new HallScheme(hallList.getHallByName('cinetech')) }));
+sessionsList.addSession(new Session({ movieId: 480530, sessionDate: '2019-03-19T14:50', hall: new HallScheme(hallList.getHallByName('imax')) }));
+sessionsList.addSession(new Session({ movieId: 480530, sessionDate: '2019-03-21T17:35', hall: new HallScheme(hallList.getHallByName('cinetech')) }));
 
 export default sessionsList;
